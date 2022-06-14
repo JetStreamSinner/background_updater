@@ -15,7 +15,7 @@ bool GnomeChangeBackgroundCommand::validate_argument(const std::string& argument
 
 std::string GnomeChangeBackgroundCommand::command() const {
     const std::string command_base = "gsettings set org.gnome.desktop.background picture-uri ";
-    std::stringstream path_builder(command_base);
-    path_builder << _path;
+    std::stringstream path_builder;
+    path_builder << command_base << _path;
     return path_builder.str();
 }

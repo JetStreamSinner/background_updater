@@ -1,9 +1,8 @@
-#include <fstream>
-#include <iostream>
-#include "gnome_change_background_command.h"
-#include "cli.h"
-#include <filesystem>
 #include "gnome_update_service.h"
+#include "cli_terminal.h"
+#include "gnome_change_background_command.h"
+#include <filesystem>
+#include <fstream>
 
 void GnomeDesktopUpdateService::update_background(const std::string &image_data) const {
     const std::filesystem::path path = std::filesystem::absolute("out.png");
@@ -18,5 +17,7 @@ void GnomeDesktopUpdateService::update_background(const std::string &image_data)
     out.close();
 
     GnomeChangeBackgroundCommand command(path);
-    Cli::execute(command);
+
+    CliTerminal terminal;
+    terminal.execute(command);
 }
