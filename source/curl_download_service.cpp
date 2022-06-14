@@ -1,5 +1,6 @@
 #include "curl_download_service.h"
 #include <cstring>
+#include <sstream>
 #include <curl/curl.h>
 
 struct MemoryStructure {
@@ -42,23 +43,27 @@ std::string CURLDownloadService::get_source() const {
 
 std::string CURLDownloadService::get_image_data() const {
     CURL * curl_handle = curl_easy_init();
-    if (curl_handle) {
-        CURLcode result;
-        MemoryStructure chunk;
-        chunk.buffer = (char*)malloc(1);
-        chunk.size = 0;
-        curl_easy_setopt(curl_handle, CURLOPT_URL, _url.c_str());
-        curl_easy_setopt(curl_handle, CURLOPT_WRITEFUNCTION, write_callback);
-        curl_easy_setopt(curl_handle, CURLOPT_WRITEDATA, (void*)&chunk);
-        curl_easy_setopt(curl_handle, CURLOPT_USERAGENT, "libcurl-agent/1.0");
 
-        result = curl_easy_perform(curl_handle);
-
-        std::string output(chunk.buffer, chunk.size - 1);
-
-        curl_easy_cleanup(curl_handle);
-        free(chunk.buffer);
-        return output;
+    if (!curl_handle) {
+        std::stringstream error_formatter;
+        error_formatter << "Cannot create CURL handle" << std::endl;
+        throw std::runtime_error(error_formatter.str());
     }
-    return "";
+
+    CURLcode result;
+    MemoryStructure chunk;
+    chunk.buffer = (char*)malloc(1);
+    chunk.size = 0;
+    curl_easy_setopt(curl_handle, CURLOPT_URL, _url.c_str());
+    curl_easy_setopt(curl_handle, CURLOPT_WRITEFUNCTION, write_callback);
+    curl_easy_setopt(curl_handle, CURLOPT_WRITEDATA, (void*)&chunk);
+    curl_easy_setopt(curl_handle, CURLOPT_USERAGENT, "libcurl-agent/1.0");
+
+    result = curl_easy_perform(curl_handle);
+
+    std::string output(chunk.buffer, chunk.size - 1);
+
+    curl_easy_cleanup(curl_handle);
+    free(chunk.buffer);
+    return output;
 }
