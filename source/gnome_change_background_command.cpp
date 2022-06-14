@@ -1,4 +1,6 @@
 #include <sstream>
+#include <filesystem>
+#include <regex>
 #include "gnome_change_background_command.h"
 
 GnomeChangeBackgroundCommand::GnomeChangeBackgroundCommand(const std::string& path) : _path(path) {
@@ -9,8 +11,10 @@ GnomeChangeBackgroundCommand::GnomeChangeBackgroundCommand(const std::string& pa
 }
 
 bool GnomeChangeBackgroundCommand::validate_argument(const std::string& argument) const {
-    // Check path in argument?
-    return false;
+    const bool path_exist = std::filesystem::exists(argument);
+    const std::regex png_patter("([^\\\\s]+(\\\\.(?i)png)$)", std::regex::grep);
+    const bool match_png = std::regex_match(argument, png_patter);
+    return !(path_exist && match_png);
 }
 
 std::string GnomeChangeBackgroundCommand::command() const {
