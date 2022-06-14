@@ -2,8 +2,8 @@
 #include "cli_terminal.h"
 #include "gnome_change_background_command.h"
 #include <fstream>
-#include <iostream>
 #include <string_view>
+#include "utils.h"
 
 void GnomeDesktopUpdateService::update_background(const std::string &image_data) const {
     // Its not very good approach, so its should be refactored later
@@ -22,17 +22,13 @@ void GnomeDesktopUpdateService::update_background(const std::string &image_data)
 
     std::fstream out(absolute_path, std::ios::out | std::ios::trunc);
     if (!out.is_open()) {
-        std::stringstream error_formatter;
-        error_formatter << "Cannot open file " << absolute_path << " for saving" << std::endl;
-        throw std::runtime_error(error_formatter.str());
+        throw std::runtime_error(error_formatter("Cannot open file ", absolute_path, " for saving"));
     }
 
     out.write(image_data.c_str(), image_data.size());
     out.close();
     if (out.bad()) {
-        std::stringstream error_formatter;
-        error_formatter << "Cannot write data in " << absolute_path << std::endl;
-        throw std::runtime_error(error_formatter.str());
+        throw std::runtime_error(error_formatter("Cannot write data in ", absolute_path));
     }
 
     GnomeChangeBackgroundCommand command(absolute_path);

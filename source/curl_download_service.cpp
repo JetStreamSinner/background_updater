@@ -2,6 +2,7 @@
 #include <cstring>
 #include <sstream>
 #include <curl/curl.h>
+#include "utils.h"
 
 struct MemoryStructure {
     char * buffer;
@@ -45,9 +46,7 @@ std::string CURLDownloadService::get_image_data() const {
     CURL * curl_handle = curl_easy_init();
 
     if (!curl_handle) {
-        std::stringstream error_formatter;
-        error_formatter << "Cannot create CURL handle" << std::endl;
-        throw std::runtime_error(error_formatter.str());
+        throw std::runtime_error(error_formatter("Cannot create curl handle"));
     }
 
     CURLcode result;
