@@ -12,8 +12,8 @@ GnomeChangeBackgroundCommand::GnomeChangeBackgroundCommand(const std::string& pa
 
 bool GnomeChangeBackgroundCommand::validate_argument(const std::string& argument) const {
     const bool path_exist = std::filesystem::exists(argument);
-    const std::regex png_patter("([^\\\\s]+(\\\\.(?i)png)$)", std::regex::grep);
-    const bool match_png = std::regex_match(argument, png_patter);
+    const std::regex png_pattern("\\/?(?:[^\"'/]+\\/)+[^\"'\\s]+?\\.png\\b");
+    const bool match_png = std::regex_match(argument, png_pattern);
     return !(path_exist && match_png);
 }
 
