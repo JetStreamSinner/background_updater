@@ -6,7 +6,7 @@
 
 int main(int argc, char * argv[])
 {
-    const std::string url = "https://thisisthewall.herokuapp.com/api/ru";
+    const std::string url = "https://thisisthewall.herokuapp.com/api";
     CURLDownloadService service(url);
     const std::string data = service.get_image_data();
 

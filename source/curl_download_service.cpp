@@ -54,7 +54,7 @@ std::string CURLDownloadService::get_image_data() const {
 
         result = curl_easy_perform(curl_handle);
 
-        std::string output(chunk.buffer, chunk.size);
+        std::string output(chunk.buffer, chunk.size - 1);
 
         curl_easy_cleanup(curl_handle);
         free(chunk.buffer);
