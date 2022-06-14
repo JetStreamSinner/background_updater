@@ -60,4 +60,5 @@ std::string CURLDownloadService::get_image_data() const {
         free(chunk.buffer);
         return output;
     }
+    return "";
 }
