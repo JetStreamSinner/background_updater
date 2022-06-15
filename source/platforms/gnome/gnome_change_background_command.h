@@ -1,6 +1,6 @@
 #pragma once
 
-#include "cli_command.h"
+#include "../../cli_command.h"
 
 class GnomeChangeBackgroundCommand : public CliCommand {
 public:

@@ -1,9 +1,9 @@
 #include "gnome_update_service.h"
-#include "cli_terminal.h"
+#include "../../cli_terminal.h"
+#include "../../utils.h"
 #include "gnome_change_background_command.h"
 #include <fstream>
 #include <string_view>
-#include "utils.h"
 
 void GnomeDesktopUpdateService::update_background(const std::string &image_data) const {
     // Its not very good approach, so its should be refactored later

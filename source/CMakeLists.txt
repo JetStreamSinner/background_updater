@@ -1,4 +1,4 @@
-set(src main.cpp curl_download_service.cpp gnome_update_service.cpp cli_terminal.cpp gnome_change_background_command.cpp
+set(src main.cpp curl_download_service.cpp platforms/gnome/gnome_update_service.cpp cli_terminal.cpp platforms/gnome/gnome_change_background_command.cpp
         scheduler.cpp)
 set(CMAKE_CXX_STANDARD 17)
 

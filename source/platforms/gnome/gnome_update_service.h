@@ -1,9 +1,9 @@
 #pragma once
 
+#include "../../desktop_update_service.h"
 #include <filesystem>
-#include "desktop_update_service.h"
 
-class GnomeDesktopUpdateService : public BackgroundUpdateService {
+class GnomeDesktopUpdateService : public DesktopUpdateService {
 public:
     void update_background(const std::string& image_data) const override;
 private:

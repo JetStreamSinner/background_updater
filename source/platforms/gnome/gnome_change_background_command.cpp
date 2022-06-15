@@ -1,8 +1,8 @@
-#include <sstream>
+#include "gnome_change_background_command.h"
+#include "../../utils.h"
 #include <filesystem>
 #include <regex>
-#include "gnome_change_background_command.h"
-#include "utils.h"
+#include <sstream>
 
 GnomeChangeBackgroundCommand::GnomeChangeBackgroundCommand(const std::string& path) : _path(path) {
     const bool arguments_bad = validate_argument(_path);
