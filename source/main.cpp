@@ -1,8 +1,8 @@
-#include <fstream>
 #include "curl_download_service.h"
-#include "gnome_update_service.h"
+#include "platforms/gnome/gnome_update_service.h"
 #include "scheduler.h"
-
+#include "utils.h"
+#include <fstream>
 
 
 int main(int argc, char * argv[])
@@ -15,7 +15,7 @@ int main(int argc, char * argv[])
         update_service.update_background(data);
     };
     Scheduler scheduler(exec);
-    scheduler.start(std::chrono::milliseconds(1000));
+    scheduler.start(std::chrono::hours(1));
 
     return 0;
 }

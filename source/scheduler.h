@@ -8,7 +8,7 @@
 class Scheduler {
 public:
     explicit Scheduler(const std::function<void()>& exec);
-    void start(const std::chrono::duration<double, std::ratio<1, 10>>& delay);
+    void start(const std::chrono::hours& delay);
 private:
     std::function<void()> _exec;
 };
