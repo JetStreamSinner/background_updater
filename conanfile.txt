@@ -1,5 +1,6 @@
 [requires]
 libcurl/7.83.1
+gtest/1.10.0
 
 [generators]
 cmake
