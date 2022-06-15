@@ -56,13 +56,18 @@ std::string CURLDownloadService::get_image_data() const {
     curl_easy_setopt(curl_handle, CURLOPT_URL, _url.c_str());
     curl_easy_setopt(curl_handle, CURLOPT_WRITEFUNCTION, write_callback);
     curl_easy_setopt(curl_handle, CURLOPT_WRITEDATA, (void*)&chunk);
+    curl_easy_setopt(curl_handle, CURLOPT_FOLLOWLOCATION, 1L);
     curl_easy_setopt(curl_handle, CURLOPT_USERAGENT, "libcurl-agent/1.0");
 
     result = curl_easy_perform(curl_handle);
-
-    std::string output(chunk.buffer, chunk.size - 1);
-
     curl_easy_cleanup(curl_handle);
+
+    const bool chunk_empty = chunk.size == 0;
+    if (chunk_empty) {
+        free(chunk.buffer);
+        return "";
+    }
+    std::string output(chunk.buffer, chunk.size - 1);
     free(chunk.buffer);
     return output;
 }
