@@ -7,7 +7,7 @@
 
 int main(int argc, char * argv[])
 {
-    const std::string url = "https://thisisthewall.herokuapp.com/api";
+    const std::string url = "https://picsum.photos/1920/768";
     auto exec = [&]() {
         WebImageProvider service(url);
         const auto data = service.get_image_data();
