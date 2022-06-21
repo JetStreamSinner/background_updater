@@ -6,8 +6,8 @@
 
 class BytesArray {
 public:
-    BytesArray() = default;
-    BytesArray(const char * const raw_buffer, std::size_t buffer_size);
+    explicit BytesArray() = default;
+    explicit BytesArray(const char * const raw_buffer, std::size_t buffer_size);
     BytesArray(std::initializer_list<unsigned char>&& init);
     std::size_t size() const;
 
