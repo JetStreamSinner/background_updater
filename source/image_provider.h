@@ -1,8 +1,8 @@
 #pragma once
 
-#include <string>
+#include "bytes_array.h"
 
 class ImageProvider {
 public:
-    virtual std::string get_image_data() const = 0;
+    virtual BytesArray get_image_data() const = 0;
 };

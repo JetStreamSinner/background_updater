@@ -42,7 +42,7 @@ std::string WebImageProvider::get_source() const {
     return _url;
 }
 
-std::string WebImageProvider::get_image_data() const {
+BytesArray WebImageProvider::get_image_data() const {
     CURL * curl_handle = curl_easy_init();
 
     if (!curl_handle) {
@@ -65,9 +65,8 @@ std::string WebImageProvider::get_image_data() const {
     const bool chunk_empty = chunk.size == 0;
     if (chunk_empty) {
         free(chunk.buffer);
-        return "";
+        return BytesArray();
     }
-    std::string output(chunk.buffer, chunk.size - 1);
-    free(chunk.buffer);
+    BytesArray output(chunk.buffer);
     return output;
 }
