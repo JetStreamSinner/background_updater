@@ -9,4 +9,5 @@ public:
 private:
     // Move in utils
     void create_temp_directory(const std::filesystem::path& path) const;
+    std::filesystem::path create_filename(ImageFormat format) const;
 };

@@ -15,7 +15,7 @@ void GnomeDesktopUpdateService::update_background(const Image &image_data) const
     const std::filesystem::path temp_path = temp_dir_formatter.str();
     create_temp_directory(temp_path);
 
-    const std::filesystem::path filename = "/out.png";
+    const std::filesystem::path filename = create_filename(image_data.format());
     std::stringstream saving_path_formatter;
     saving_path_formatter << temp_path.c_str() << filename.c_str();
     const std::filesystem::path absolute_path = saving_path_formatter.str();
@@ -42,4 +42,14 @@ void GnomeDesktopUpdateService::create_temp_directory(const std::filesystem::pat
         return;
     }
     std::filesystem::create_directory(path);
+}
+
+std::filesystem::path GnomeDesktopUpdateService::create_filename(ImageFormat format) const {
+    const std::string base_filename = "/out";
+    if (format == ImageFormat::Png) {
+        return base_filename + ".png";
+    } else if (format == ImageFormat::Jpeg) {
+        return base_filename + ".jpeg";
+    }
+    throw std::runtime_error("Bad image format");
 }
