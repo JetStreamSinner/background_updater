@@ -9,7 +9,7 @@ namespace Impl {
     }
 
     const char * const end(const char * const raw, std::size_t buffer_size) {
-        return raw + buffer_size - 1;
+        return raw + buffer_size;
     }
 }
 
