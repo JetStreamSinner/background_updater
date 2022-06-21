@@ -1,8 +1,8 @@
-#include "curl_download_service.h"
-#include <cstring>
-#include <sstream>
-#include <curl/curl.h>
 #include "utils.h"
+#include "web_image_provider.h"
+#include <cstring>
+#include <curl/curl.h>
+#include <sstream>
 
 struct MemoryStructure {
     char * buffer;
@@ -30,19 +30,19 @@ std::size_t write_callback(void * content_buffer, std::size_t size, std::size_t 
 }
 
 
-CURLDownloadService::CURLDownloadService(const std::string &url) {
+WebImageProvider::WebImageProvider(const std::string &url) {
     set_source(url);
 }
 
-void CURLDownloadService::set_source(const std::string &url) {
+void WebImageProvider::set_source(const std::string &url) {
     _url = url;
 }
 
-std::string CURLDownloadService::get_source() const {
+std::string WebImageProvider::get_source() const {
     return _url;
 }
 
-std::string CURLDownloadService::get_image_data() const {
+std::string WebImageProvider::get_image_data() const {
     CURL * curl_handle = curl_easy_init();
 
     if (!curl_handle) {

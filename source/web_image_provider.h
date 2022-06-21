@@ -1,10 +1,10 @@
 #pragma once
 
-#include "download_service.h"
+#include "image_provider.h"
 
-class CURLDownloadService : public DownloadService {
+class WebImageProvider : public ImageProvider {
 public:
-    explicit CURLDownloadService(const std::string& url);
+    explicit WebImageProvider(const std::string& url);
     void set_source(const std::string& url);
     std::string get_source() const;
     std::string get_image_data() const override;
