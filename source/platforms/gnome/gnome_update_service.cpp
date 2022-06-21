@@ -25,7 +25,7 @@ void GnomeDesktopUpdateService::update_background(const Image &image_data) const
         throw std::runtime_error(error_formatter("Cannot open file ", absolute_path, " for saving"));
     }
 
-    out << image_data.buffer;
+    out << image_data.data();
     out.close();
     if (out.bad()) {
         throw std::runtime_error(error_formatter("Cannot write data in ", absolute_path));

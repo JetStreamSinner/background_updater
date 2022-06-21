@@ -67,6 +67,9 @@ Image WebImageProvider::get_image_data() const {
         free(chunk.buffer);
         return Image();
     }
-    Image output(chunk.buffer, ImageFormat::Png);
+
+    BytesArray image_buffer(chunk.buffer, chunk.size);
+    Image output(image_buffer);
+    free(chunk.buffer);
     return output;
 }
