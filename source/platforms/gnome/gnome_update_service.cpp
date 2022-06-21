@@ -5,7 +5,7 @@
 #include <fstream>
 #include <string_view>
 
-void GnomeDesktopUpdateService::update_background(const BytesArray &image_data) const {
+void GnomeDesktopUpdateService::update_background(const Image &image_data) const {
     // Its not very good approach, so its should be refactored later
     std::stringstream temp_dir_formatter;
     const std::filesystem::path temp_dir_name = "/background_updater";
@@ -25,7 +25,7 @@ void GnomeDesktopUpdateService::update_background(const BytesArray &image_data) 
         throw std::runtime_error(error_formatter("Cannot open file ", absolute_path, " for saving"));
     }
 
-    out << image_data;
+    out << image_data.buffer;
     out.close();
     if (out.bad()) {
         throw std::runtime_error(error_formatter("Cannot write data in ", absolute_path));

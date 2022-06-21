@@ -7,7 +7,7 @@ public:
     explicit WebImageProvider(const std::string& url);
     void set_source(const std::string& url);
     std::string get_source() const;
-    BytesArray get_image_data() const override;
+    Image get_image_data() const override;
 private:
     std::string _url;
 };

@@ -1,8 +1,8 @@
 #pragma once
 
-#include "bytes_array.h"
+#include "image.h"
 
 class ImageProvider {
 public:
-    virtual BytesArray get_image_data() const = 0;
+    virtual Image get_image_data() const = 0;
 };
