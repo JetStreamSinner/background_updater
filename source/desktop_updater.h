@@ -2,7 +2,7 @@
 
 #include "image.h"
 
-class DesktopUpdateService {
+class DesktopUpdater {
 public:
     virtual void update_background(const Image &image_data) const = 0;
 };
