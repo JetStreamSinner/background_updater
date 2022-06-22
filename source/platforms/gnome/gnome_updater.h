@@ -3,10 +3,10 @@
 #include "../../desktop_updater.h"
 #include <filesystem>
 
-class GnomeDesktopUpdateService : public DesktopUpdater {
+class GnomeDesktopUpdater : public DesktopUpdater {
 public:
     void update_background(const Image &image_data) const override;
-    ~GnomeDesktopUpdateService() override = default;
+    ~GnomeDesktopUpdater() override = default;
 private:
     // Move in utils
     void create_temp_directory(const std::filesystem::path &path) const;

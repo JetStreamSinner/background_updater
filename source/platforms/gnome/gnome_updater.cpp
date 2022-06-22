@@ -1,11 +1,11 @@
-#include "gnome_update_service.h"
 #include "../../cli_terminal.h"
 #include "../../utils.h"
 #include "gnome_change_background_command.h"
+#include "gnome_updater.h"
 #include <fstream>
 #include <string_view>
 
-void GnomeDesktopUpdateService::update_background(const Image &image_data) const {
+void GnomeDesktopUpdater::update_background(const Image &image_data) const {
     // Its not very good approach, so its should be refactored later
     std::stringstream temp_dir_formatter;
     const std::filesystem::path temp_dir_name = "/background_updater";
@@ -36,7 +36,7 @@ void GnomeDesktopUpdateService::update_background(const Image &image_data) const
     terminal.execute(command);
 }
 
-void GnomeDesktopUpdateService::create_temp_directory(const std::filesystem::path &path) const {
+void GnomeDesktopUpdater::create_temp_directory(const std::filesystem::path &path) const {
     const bool path_exist = std::filesystem::exists(path);
     if (path_exist) {
         return;
@@ -44,7 +44,7 @@ void GnomeDesktopUpdateService::create_temp_directory(const std::filesystem::pat
     std::filesystem::create_directory(path);
 }
 
-std::filesystem::path GnomeDesktopUpdateService::create_filename(ImageFormat format) const {
+std::filesystem::path GnomeDesktopUpdater::create_filename(ImageFormat format) const {
     const std::string base_filename = "/out";
     if (format == ImageFormat::Png) {
         return base_filename + ".png";

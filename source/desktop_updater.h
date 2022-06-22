@@ -5,5 +5,5 @@
 class DesktopUpdater {
 public:
     virtual void update_background(const Image &image_data) const = 0;
-    virtual ~DesktopUpdater() = 0;
+    virtual ~DesktopUpdater() = default;
 };

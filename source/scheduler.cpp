@@ -1,12 +1,9 @@
 #include "scheduler.h"
 #include <thread>
 
-Scheduler::Scheduler(const std::function<void()> &exec) : _exec(exec) {
-}
-
-void Scheduler::start(const std::chrono::milliseconds &delay) {
+void Scheduler::start(const std::chrono::milliseconds &delay, const std::function<void()>& triggered) {
     while (true) {
         std::this_thread::sleep_for(delay);
-        _exec();
+        triggered();
     }
 }

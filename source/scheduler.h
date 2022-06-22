@@ -3,13 +3,11 @@
 #include <chrono>
 #include <functional>
 #include <vector>
+#include "i_scheduler.h"
 
 
-class Scheduler {
+class Scheduler : public IScheduler {
 public:
-    explicit Scheduler(const std::function<void()> &exec);
-    void start(const std::chrono::milliseconds &delay);
-
-private:
-    std::function<void()> _exec;
+    void start(const std::chrono::milliseconds &delay, const std::function<void()>& exec) override;
+    ~Scheduler() override = default;
 };
