@@ -6,4 +6,5 @@
 class CliCommand {
 public:
     virtual std::string command() const = 0;
+    virtual ~CliCommand() override = 0;
 };

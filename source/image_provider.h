@@ -5,4 +5,5 @@
 class ImageProvider {
 public:
     virtual Image get_image_data() const = 0;
+    virtual ~ImageProvider() = 0;
 };
