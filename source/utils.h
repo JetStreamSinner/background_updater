@@ -1,7 +1,7 @@
 #pragma once
 
-#include <string>
 #include <sstream>
+#include <string>
 
 // Implementation details
 namespace details {
@@ -15,7 +15,7 @@ namespace details {
         put_argument(os, arg);
         put_argument(os, args...);
     }
-}
+}// namespace details
 
 template<typename... Args>
 std::string error_formatter(Args... args) {

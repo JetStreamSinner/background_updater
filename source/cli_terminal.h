@@ -4,5 +4,5 @@ class CliCommand;
 
 class CliTerminal {
 public:
-    int execute(const CliCommand& command);
+    int execute(const CliCommand &command);
 };

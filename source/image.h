@@ -11,9 +11,10 @@ enum class ImageFormat {
 class Image {
 public:
     Image() = default;
-    explicit Image(const BytesArray& buffer);
+    explicit Image(const BytesArray &buffer);
     BytesArray data() const;
     ImageFormat format() const;
+
 private:
     BytesArray _buffer;
     ImageFormat _format;

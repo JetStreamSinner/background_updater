@@ -36,7 +36,7 @@ void GnomeDesktopUpdateService::update_background(const Image &image_data) const
     terminal.execute(command);
 }
 
-void GnomeDesktopUpdateService::create_temp_directory(const std::filesystem::path& path) const {
+void GnomeDesktopUpdateService::create_temp_directory(const std::filesystem::path &path) const {
     const bool path_exist = std::filesystem::exists(path);
     if (path_exist) {
         return;

@@ -12,7 +12,7 @@ ImageFormat ImageResolver::resolve(BytesArray &array) const {
 }
 
 bool ImageResolver::match_png(BytesArray &array) const {
-    BytesArray png_signature = { 137, 80, 78, 71, 13, 10, 26, 10 };
+    BytesArray png_signature = {137, 80, 78, 71, 13, 10, 26, 10};
     return match_signature(png_signature, array);
 }
 
@@ -21,7 +21,7 @@ bool ImageResolver::match_jpeg(BytesArray &array) const {
     return match_signature(jpeg_signature, array);
 }
 
-bool ImageResolver::match_signature(BytesArray& signature, BytesArray &array) const {
+bool ImageResolver::match_signature(BytesArray &signature, BytesArray &array) const {
     auto miss_iterator = std::mismatch(std::begin(signature), std::end(signature), std::begin(array));
     auto signature_iterator = miss_iterator.first;
     return signature_iterator == signature.end();

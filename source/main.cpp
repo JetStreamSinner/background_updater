@@ -5,8 +5,7 @@
 #include <fstream>
 
 
-int main(int argc, char * argv[])
-{
+int main(int argc, char *argv[]) {
     const std::string url = "https://picsum.photos/1920/768";
     auto exec = [&]() {
         WebImageProvider service(url);
@@ -15,7 +14,7 @@ int main(int argc, char * argv[])
         update_service.update_background(data);
     };
     Scheduler scheduler(exec);
-    scheduler.start(std::chrono::milliseconds (1000));
+    scheduler.start(std::chrono::milliseconds(1000));
 
     return 0;
 }

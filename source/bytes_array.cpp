@@ -3,18 +3,18 @@
 #include <cstring>
 #include <iterator>
 
-namespace Impl {
-    const char * const begin(const char * const raw) {
+namespace impl {
+    const char *const begin(const char *const raw) {
         return raw;
     }
 
-    const char * const end(const char * const raw, std::size_t buffer_size) {
+    const char *const end(const char *const raw, std::size_t buffer_size) {
         return raw + buffer_size;
     }
-}
+}// namespace Impl
 
-BytesArray::BytesArray(const char * const raw_buffer, std::size_t buffer_size) {
-    std::transform(Impl::begin(raw_buffer), Impl::end(raw_buffer, buffer_size), std::back_inserter(_buffer), [](auto init_val) {
+BytesArray::BytesArray(const char *const raw_buffer, std::size_t buffer_size) {
+    std::transform(impl::begin(raw_buffer), impl::end(raw_buffer, buffer_size), std::back_inserter(_buffer), [](auto init_val) {
         return std::byte(init_val);
     });
 }
